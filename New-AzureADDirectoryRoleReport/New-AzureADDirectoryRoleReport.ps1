@@ -1,3 +1,4 @@
+Install-Module AzureAD
 #Requires -Module AzureAD
 
 <#
@@ -58,14 +59,14 @@ $roleAssignments = Get-BetterAzureADDirectoryRoleAssignments
 $exportPath = Join-Path $PSScriptRoot "AzureADDirectoryRoleAssignments_$(get-date -f yyyy-MM-dd).csv"
 
 # Export as CSV to current directory
-$roleAssignments | Export-Csv -Path $exportPath -NoTypeInformation -Delimiter ";"
+$roleAssignments | Export-Csv -Path $exportPath -NoTypeInformation -Delimiter ","
 
 Write-Output "`nExported role assignments to: '$exportPath'"
 Write-Output $roleAssignments
 
 <# Snippet to compare two different exports
-$firstReport = Import-Csv -Path "AzureADDirectoryRoleAssignments_2020-03-13 - Copy.csv" -Delimiter ";"
-$secondReport = Import-Csv -Path "AzureADDirectoryRoleAssignments_2020-03-13.csv" -Delimiter ";"
+$firstReport = Import-Csv -Path "AzureADDirectoryRoleAssignments_2020-03-13 - Copy.csv" -Delimiter ","
+$secondReport = Import-Csv -Path "AzureADDirectoryRoleAssignments_2020-03-13.csv" -Delimiter ","
 Compare-Object $firstReport $secondReport
 #>
 
